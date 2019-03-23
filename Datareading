@@ -1,0 +1,31 @@
+//Here we will read and save the input frmo the radio. We'll also split up the data into speed, altitude etc. 
+//to be able to show it in a UI. 
+
+Time        Speed				Altitude				Position				
+data[0]			data[1]			data[2]					data[3] \n
+
+#!/usr/bin/python
+import os, sys
+import serial
+import time
+
+ser = serial.Serial('/dev/ttyUSB0',19200, timeout = 5)
+
+# listen for the input, exit if nothing received in timeout period
+while True:
+   line = ser.readline()
+   if len(line) == 0:
+      print("Time out! Exit.\n")
+      sys.exit()
+   print line,
+	 
+import string
+
+output = " "
+ser = serial.Serial('/dev/ttyUSB0', 4800, 8, 'N', 1, timeout=1)
+while True:
+  print "----"
+  while output != "":
+    output = ser.readline()
+    print output
+  output = " "
